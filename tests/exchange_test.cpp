@@ -150,7 +150,7 @@ TEST(Exchange, ProcessEqRequests_Test)
         ASSERT_TRUE(statement.executeStep());
 
         ASSERT_EQ(statement.getColumn(0).getInt64(), 5);
-        ASSERT_EQ(statement.getColumn(1).getDouble(), 50 * 61);
+        ASSERT_EQ(statement.getColumn(1).getDouble(), 50 * 64);
 
         // User (id: 2)
         ASSERT_TRUE(statement.executeStep());
@@ -162,7 +162,7 @@ TEST(Exchange, ProcessEqRequests_Test)
         ASSERT_TRUE(statement.executeStep());
 
         ASSERT_EQ(statement.getColumn(0).getInt64(), 1);
-        ASSERT_EQ(statement.getColumn(1).getDouble(), 50 * 62);
+        ASSERT_EQ(statement.getColumn(1).getDouble(), 50 * 63);
     }
 }
 
@@ -262,7 +262,7 @@ TEST(Exchange, ProcessNotEqRequests_Test)
         ASSERT_TRUE(statement.executeStep());
 
         ASSERT_EQ(statement.getColumn(0).getInt64(), 1);
-        ASSERT_EQ(statement.getColumn(1).getDouble(), 40 * 62);
+        ASSERT_EQ(statement.getColumn(1).getDouble(), 40 * 64);
 
         // User (id: 2)
         ASSERT_TRUE(statement.executeStep());
@@ -274,7 +274,7 @@ TEST(Exchange, ProcessNotEqRequests_Test)
         ASSERT_TRUE(statement.executeStep());
 
         ASSERT_EQ(statement.getColumn(0).getInt64(), 1);
-        ASSERT_EQ(statement.getColumn(1).getDouble(), 50 * 62);
+        ASSERT_EQ(statement.getColumn(1).getDouble(), 50 * 63);
 
         // User (id: 4)
         ASSERT_TRUE(statement.executeStep());
@@ -373,7 +373,7 @@ TEST(Exchange, ProcessPartialRequests_Test)
         ASSERT_TRUE(statement.executeStep());
 
         ASSERT_EQ(statement.getColumn(0).getInt64(), 3);
-        ASSERT_EQ(statement.getColumn(1).getDouble(), 61 * 20);
+        ASSERT_EQ(statement.getColumn(1).getDouble(), 63 * 20);
 
         // User (id: 1)
         ASSERT_TRUE(statement.executeStep());
@@ -385,7 +385,7 @@ TEST(Exchange, ProcessPartialRequests_Test)
         ASSERT_TRUE(statement.executeStep());
 
         ASSERT_EQ(statement.getColumn(0).getInt64(), 3);
-        ASSERT_EQ(statement.getColumn(1).getDouble(), 61 * 10);
+        ASSERT_EQ(statement.getColumn(1).getDouble(), 62 * 10);
     }
 
     // Requests Testing

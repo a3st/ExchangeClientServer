@@ -34,11 +34,10 @@ namespace exchange::modules
             uint64_t request_id;
             uint64_t user_id;
             float amount;
-            float price;
             std::string currency;
         };
 
         auto request_step(Wallet& wallet, SQLite::Transaction& transaction, RequestSideInfo const& buyer_info,
-                          RequestSideInfo const& seller_info) -> void;
+                          RequestSideInfo const& seller_info, float const price) -> void;
     };
 } // namespace exchange::modules
