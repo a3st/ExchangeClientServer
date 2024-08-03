@@ -120,6 +120,9 @@ namespace exchange::modules
                                                     .currency = currencies[1]};
                         SQLite::Transaction transaction(*m_database);
                         this->request_step(wallet, transaction, buyer_info, seller_info, price);
+
+                        // Skip partial trade if successful
+                        continue;
                     }
                     else
                     {
