@@ -164,6 +164,78 @@ TEST(Exchange, ProcessEqRequests_Test)
         ASSERT_EQ(statement.getColumn(0).getInt64(), 1);
         ASSERT_EQ(statement.getColumn(1).getDouble(), 50 * 63);
     }
+
+    // Wallet Testing
+
+    // User (id: 1)
+    {
+        auto const wallets = wallet.wallets(1).value();
+
+        auto RUB_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("RUB") == 0; });
+
+        auto USD_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("USD") == 0; });
+
+        ASSERT_EQ(RUB_wallet->amount, 3150.0f);
+        ASSERT_EQ(USD_wallet->amount, -50.0f);
+    }
+
+    // User (id: 2)
+    {
+        auto const wallets = wallet.wallets(2).value();
+
+        auto RUB_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("RUB") == 0; });
+
+        auto USD_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("USD") == 0; });
+
+        ASSERT_EQ(RUB_wallet->amount, -3150.0f);
+        ASSERT_EQ(USD_wallet->amount, 50.0f);
+    }
+
+    // User (id: 3)
+    {
+        auto const wallets = wallet.wallets(3).value();
+
+        auto RUB_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("RUB") == 0; });
+
+        auto USD_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("USD") == 0; });
+
+        ASSERT_EQ(RUB_wallet->amount, -3200.0f);
+        ASSERT_EQ(USD_wallet->amount, 50.0f);
+    }
+
+    // User (id: 4)
+    {
+        auto const wallets = wallet.wallets(4).value();
+
+        auto RUB_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("RUB") == 0; });
+
+        auto USD_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("USD") == 0; });
+
+        ASSERT_EQ(RUB_wallet->amount, 0.0f);
+        ASSERT_EQ(USD_wallet->amount, 0.0f);
+    }
+
+    // User (id: 5)
+    {
+        auto const wallets = wallet.wallets(5).value();
+
+        auto RUB_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("RUB") == 0; });
+
+        auto USD_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("USD") == 0; });
+
+        ASSERT_EQ(RUB_wallet->amount, 3200.0f);
+        ASSERT_EQ(USD_wallet->amount, -50.0f);
+    }
 }
 
 TEST(Exchange, ProcessNotEqRequests_Test)
@@ -288,6 +360,64 @@ TEST(Exchange, ProcessNotEqRequests_Test)
         ASSERT_EQ(statement.getColumn(0).getInt64(), 1);
         ASSERT_EQ(statement.getColumn(1).getDouble(), 10 * 62);
     }
+
+    // Wallet Testing
+
+    // User (id: 1)
+    {
+        auto const wallets = wallet.wallets(1).value();
+
+        auto RUB_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("RUB") == 0; });
+
+        auto USD_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("USD") == 0; });
+
+        ASSERT_EQ(RUB_wallet->amount, 6330.0f);
+        ASSERT_EQ(USD_wallet->amount, -100.0f);
+    }
+
+    // User (id: 2)
+    {
+        auto const wallets = wallet.wallets(2).value();
+
+        auto RUB_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("RUB") == 0; });
+
+        auto USD_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("USD") == 0; });
+
+        ASSERT_EQ(RUB_wallet->amount, -3150.0f);
+        ASSERT_EQ(USD_wallet->amount, 50.0f);
+    }
+
+    // User (id: 3)
+    {
+        auto const wallets = wallet.wallets(3).value();
+
+        auto RUB_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("RUB") == 0; });
+
+        auto USD_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("USD") == 0; });
+
+        ASSERT_EQ(RUB_wallet->amount, -2560.0f);
+        ASSERT_EQ(USD_wallet->amount, 40.0f);
+    }
+
+    // User (id: 4)
+    {
+        auto const wallets = wallet.wallets(4).value();
+
+        auto RUB_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("RUB") == 0; });
+
+        auto USD_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("USD") == 0; });
+
+        ASSERT_EQ(RUB_wallet->amount, -620.0f);
+        ASSERT_EQ(USD_wallet->amount, 10.0f);
+    }
 }
 
 TEST(Exchange, ProcessPartialRequests_Test)
@@ -396,6 +526,50 @@ TEST(Exchange, ProcessPartialRequests_Test)
         ASSERT_TRUE(statement.executeStep());
         ASSERT_EQ(statement.getColumn(0).getInt64(), 3);
         ASSERT_EQ(statement.getColumn(1).getDouble(), 20);
+    }
+
+    // Wallet Testing
+
+    // User (id: 1)
+    {
+        auto const wallets = wallet.wallets(1).value();
+
+        auto RUB_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("RUB") == 0; });
+
+        auto USD_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("USD") == 0; });
+
+        ASSERT_EQ(RUB_wallet->amount, -620.0f);
+        ASSERT_EQ(USD_wallet->amount, 10.0f);
+    }
+
+    // User (id: 2)
+    {
+        auto const wallets = wallet.wallets(2).value();
+
+        auto RUB_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("RUB") == 0; });
+
+        auto USD_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("USD") == 0; });
+
+        ASSERT_EQ(RUB_wallet->amount, -1260.0f);
+        ASSERT_EQ(USD_wallet->amount, 20.0f);
+    }
+
+    // User (id: 3)
+    {
+        auto const wallets = wallet.wallets(3).value();
+
+        auto RUB_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("RUB") == 0; });
+
+        auto USD_wallet = std::find_if(wallets.begin(), wallets.end(),
+                                       [&](auto const& element) { return element.currency.compare("USD") == 0; });
+
+        ASSERT_EQ(RUB_wallet->amount, 1880.0f);
+        ASSERT_EQ(USD_wallet->amount, -30.0f);
     }
 }
 
